@@ -26,8 +26,11 @@ calculategrade.c:
 Returns a letter {S,A,B,C,D,E,F} according to the students score in each subject.
 ESA carries 60% weightage whereas ISAs carry 20% weightage each.
 
+
 functions.h:
 Functions library.
+
+To run makefile(windows) : open cmd , and write "mingw32-make -f makefile.mk"
 
 Author:Anish Kulkarni [PES2UG23CS074]
 Sem -2 , Sec -B
