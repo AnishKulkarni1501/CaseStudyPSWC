@@ -32,6 +32,8 @@ Functions library.
 
 To run makefile(windows) : open cmd , and write "mingw32-make -f makefile.mk"
 
+The program "run" can be run after this by either simply typing run(windows) or ./run(linux)
+
 Author:Anish Kulkarni [PES2UG23CS074]
 Sem -2 , Sec -B
 PES UNIVERSITY
