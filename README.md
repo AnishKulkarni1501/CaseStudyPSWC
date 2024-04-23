@@ -1,6 +1,8 @@
 DOCUMENTATION:
 C Case study:
+
 Note : This repo has been updated to include the student info in structures
+
 To create a grade card based of user input with a menu
 Menu contains 4 options : To display grade card , Add a new student , Update a student's marks and to exit the program
 There are 5 C files main.c , calculategrade.c , gradecard.c , updatemarks.c and addstudents.c as well as one C header file called fucntions.h
