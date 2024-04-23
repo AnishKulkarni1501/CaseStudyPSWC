@@ -1,13 +1,4 @@
-#include<stdio.h>
 #include "functions.h"
-
-extern int roll_nos[MAX_STUDENTS];
-extern char names[MAX_STUDENTS][50];
-extern float marks[MAX_STUDENTS][MAX_SUBJECTS][MAX_EXAMS];
-extern char grades[MAX_STUDENTS][MAX_SUBJECTS];
-extern int student_count;
-extern int rollNo;
-
 
 
 char calculateGrade(float isa1, float isa2, float esa) {

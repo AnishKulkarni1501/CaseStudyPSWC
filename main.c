@@ -1,17 +1,7 @@
 #include <stdio.h>
-#include <string.h>
 #include "functions.h"
-#define _MAIN_
-int roll_nos[MAX_STUDENTS];
-char names[MAX_STUDENTS][50];
-float marks[MAX_STUDENTS][MAX_SUBJECTS][MAX_EXAMS];
-char grades[MAX_STUDENTS][MAX_SUBJECTS];
-
- int student_count = 0;
- int rollNo;
-
-
-
+struct Student students[10];
+int student_count = 0;
 int main() {
     int choice;
 

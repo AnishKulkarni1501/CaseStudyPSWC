@@ -1,16 +1,19 @@
-#define MAX_STUDENTS 10
-#define MAX_SUBJECTS 3
-#define MAX_EXAMS 3
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
+#define MAX_STUDENTS 5
+#define MAX_NAME_LENGTH 50
 
-#ifdef _MAIN_
+struct Student {
+    int roll_no;
+    char name[MAX_NAME_LENGTH];
+    float marks[3][3];
+    char grade[3];
+};
 void GradeCard();
 void addstudent();
 void updateMarks();
 char calculateGrade(float isa1, float isa2, float esa);
-#else 
-extern void GradeCard();
-extern void addstudent();
-extern void updateMarks();
-extern char calculateGrade(float isa1, float isa2, float esa);
-#endif
+
+#endif 
+
