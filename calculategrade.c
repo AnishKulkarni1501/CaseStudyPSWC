@@ -1,6 +1,5 @@
 #include "functions.h"
 
-
 char calculateGrade(float isa1, float isa2, float esa) {
     float score = (isa1 + isa2 + esa) / 1.8;
 

@@ -1,67 +1,79 @@
 #include <stdio.h>
+#include <string.h>
 #include "functions.h"
-extern struct Student students[10];
-extern int student_count;
 
 void updateMarks() {
-    if (student_count == 0) {
-        printf("No students added yet!\n");
+    int roll_no;
+    FILE *file;
+    char line[256], data[1000] = "";
+    int found = 0;
+
+    printf("Enter the roll number of the student whose marks you want to update: ");
+    scanf("%d", &roll_no);
+
+    file = fopen("Data.csv", "r");
+    if (file == NULL) {
+        printf("No students added!\n");
         return;
     }
 
-    int rollNo;
-    printf("Enter the roll number of the student whose marks you want to update: ");
-    scanf("%d", &rollNo);
+    while (fgets(line, sizeof(line), file)) {
+        int curr_roll_no;
+        sscanf(line, "%d,", &curr_roll_no);
 
-    int exists = 0;
-    for (int i = 0; i < student_count; i++) {
-        if (students[i].roll_no == rollNo) {
-            printf("Enter new marks for %d subjects for %d exams:\n", 3, 3);
-            for (int j = 0; j < 3; j++) {
-                switch (j) {
-                    case 0:
-                        printf("Mathematics: \n");
-                        break;
-                    case 1:
-                        printf("Physics: \n");
-                        break;
-                    case 2:
-                        printf("Problem Solving With C: \n");
-                        break;
+        if (curr_roll_no == roll_no) {
+            found = 1;
+            char name[50];
+            float marks[3][3];
+
+            printf("Enter new marks for 3 subjects for 3 exams:\n");
+            for (int i = 0; i < 3; i++) {
+                switch(i){
+                    case 0: printf("Mathematics:\n"); break;
+                    case 1: printf("Physics:\n"); break;
+                    case 2: printf("Problem Solving With C:\n"); break;
                 }
-                for (int k = 0; k < 3; k++) {
-                    switch (k) {
-                        case 0:
-                            printf("ISA 1: ");
-                            break;
-                        case 1:
-                            printf("ISA 2: ");
-                            break;
-                        case 2:
-                            printf("ESA: ");
-                            break;
+                for (int j = 0; j < 3; j++) {
+                    if (j <= 1) {
+                        printf("ISA %d: ", j + 1);
+                    } else {
+                        printf("ESA: ");
                     }
-                    scanf("%f", &students[i].marks[j][k]);
-                    if ((k == 0 || k == 1) && (students[i].marks[j][k] < 0 || students[i].marks[j][k] > 40)) {
-                        printf("Enter number from 0 to 40!\n");
-                        return;
-                    } else if ((k == 2) && (students[i].marks[j][k] < 0 || students[i].marks[j][k] > 100)) {
-                        printf("Enter number from 0 to 100!\n");
-                        return;
+                    scanf("%f", &marks[i][j]);
+                    while ((j <= 1 && (marks[i][j] < 0 || marks[i][j] > 40)) || (j == 2 && (marks[i][j] < 0 || marks[i][j] > 100))) {
+                        printf("Invalid mark! Enter again: ");
+                        scanf("%f", &marks[i][j]);
                     }
                 }
             }
 
-            for (int j = 0; j < 3; j++) {
-                students[i].grade[j] = calculateGrade(students[i].marks[j][0], students[i].marks[j][1], students[i].marks[j][2]);
+            sscanf(line, "%d,%49[^,]", &curr_roll_no, name);
+            sprintf(line, "%d,%s", curr_roll_no, name);
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    char temp[10];
+                    sprintf(temp, ",%.2f", marks[i][j]);
+                    strcat(line, temp);
+                }
             }
-
-            exists = 1;
-            break;
+            strcat(line, "\n");
         }
+        strcat(data, line);
     }
 
-    if (!exists) {
-        printf("Student with roll number %d does not exist!\n", rollNo);
+    fclose(file);
+
+    if (!found) {
+        printf("Student with roll number %d not found!\n", roll_no);
+        return;
     }
+
+    file = fopen("Data.csv", "w");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return;
+    }
+
+    fputs(data, file);
+    fclose(file);
 }

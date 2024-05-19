@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "functions.h"
-struct Student students[10];
-int student_count = 0;
+
 int main() {
     int choice;
 
@@ -10,7 +9,8 @@ int main() {
         printf("1. Display the grade card\n");
         printf("2. Add new student\n");
         printf("3. Update marks\n");
-        printf("4. Exit\n");
+        printf("4. Clear CSV file\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -25,12 +25,15 @@ int main() {
                 updateMarks();
                 break;
             case 4:
+                clearCSV();
+                break;
+            case 5:
                 printf("Exiting Program\n");
                 break;
             default:
                 printf("Invalid choice!\n");
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
