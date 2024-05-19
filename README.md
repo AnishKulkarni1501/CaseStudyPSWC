@@ -1,11 +1,13 @@
 DOCUMENTATION:
 C Case study:
 
-Note : This repo has been updated to include the student info in structures
+Note : This repo has been updated to store the student info in a CSV file called "Data.csv"
+
+[NEW FUNCTION] clearfile.c : This simply just clears the csv file
 
 To create a grade card based of user input with a menu
-Menu contains 4 options : To display grade card , Add a new student , Update a student's marks and to exit the program
-There are 5 C files main.c , calculategrade.c , gradecard.c , updatemarks.c and addstudents.c as well as one C header file called fucntions.h
+Menu contains 5 options : To display grade card , Add a new student , Update a student's marks,Clear CSV File and to exit the program
+There are 6 C files main.c ,clearfile.c, calculategrade.c , gradecard.c , updatemarks.c and addstudents.c as well as one C header file called fucntions.h
 
 main.c :
 Contains the Menu options as well as the main function of the C file.
